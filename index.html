@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Countdown</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: #fff5f5; /* Solid light pink base */
+            color: #5c4033;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Love animation styles */
+        .love-heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: none;
+            transform: rotate(-45deg);
+            animation: lovePulse 4s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        .love-heart::before,
+        .love-heart::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: 50%;
+        }
+
+        .love-heart::before {
+            top: -50%;
+            left: 0;
+        }
+
+        .love-heart::after {
+            left: 50%;
+            top: 0;
+        }
+
+        /* Color and size variations */
+        .love-heart:nth-child(3n) { background: rgba(255, 105, 180, 0.7); } /* Pink */
+        .love-heart:nth-child(3n+1) { background: rgba(255, 182, 193, 0.8); } /* Light Pink */
+        .love-heart:nth-child(3n+2) { background: rgba(255, 228, 225, 0.6); } /* Pale Pink */
+
+        .countdown-container {
+            text-align: center;
+            background: linear-gradient(to bottom, #fff0f5, #ffdab9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            animation: slideUp 1.5s ease-in-out, pulse 2s infinite;
+            border: 2px dashed #ff9999;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #ff69b4;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .countdown {
+            font-size: 50px;
+            font-weight: bold;
+            color: #ff1493;
+            animation: blink 1.5s infinite alternate;
+        }
+
+        .message {
+            font-size: 20px;
+            margin-top: 15px;
+            color: #c71585;
+            font-style: italic;
+            animation: sway 3s infinite ease-in-out;
+        }
+
+        .age {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #8b4513;
+        }
+
+        /* Footer styles */
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            color: #ff69b4;
+            font-family: 'Courier New', Courier, monospace;
+            animation: slideInOut 3s infinite ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes sway {
+            0% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            100% { transform: translateX(-5px); }
+        }
+
+        @keyframes lovePulse {
+            0% { 
+                opacity: 0; 
+                transform: rotate(-45deg) scale(0.5); 
+            }
+            25% { 
+                opacity: 0.8; 
+                transform: rotate(-45deg) scale(1.2); 
+            }
+            50% { 
+                opacity: 0.6; 
+                transform: rotate(-45deg) scale(0.8); 
+            }
+            75% { 
+                opacity: 0.8; 
+                transform: rotate(-45deg) scale(1.1); 
+            }
+            100% { 
+                opacity: 0; 
+                transform: rotate(-45deg) scale(0.5); 
+            }
+        }
+
+        /* Animation for footer */
+        @keyframes slideInOut {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-10px); opacity: 0.7; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Love animation hearts -->
+<div class="love-heart" style="left: 5%; top: 10%; width: 20px; height: 20px; animation-delay: 0s;"></div>
+<div class="love-heart" style="left: 15%; top: 20%; width: 30px; height: 30px; animation-delay: 0.3s;"></div>
+<div class="love-heart" style="left: 25%; top: 30%; width: 15px; height: 15px; animation-delay: 0.6s;"></div>
+<div class="love-heart" style="left: 35%; top: 15%; width: 25px; height: 25px; animation-delay: 0.9s;"></div>
+<div class="love-heart" style="left: 45%; top: 25%; width: 22px; height: 22px; animation-delay: 1.2s;"></div>
+<div class="love-heart" style="left: 55%; top: 35%; width: 28px; height: 28px; animation-delay: 1.5s;"></div>
+<div class="love-heart" style="left: 65%; top: 20%; width: 18px; height: 18px; animation-delay: 1.8s;"></div>
+<div class="love-heart" style="left: 75%; top: 10%; width: 32px; height: 32px; animation-delay: 2.1s;"></div>
+<div class="love-heart" style="left: 85%; top: 30%; width: 24px; height: 24px; animation-delay: 2.4s;"></div>
+<div class="love-heart" style="left: 10%; top: 40%; width: 20px; height: 20px; animation-delay: 2.7s;"></div>
+<div class="love-heart" style="left: 20%; top: 50%; width: 26px; height: 26px; animation-delay: 3s;"></div>
+<div class="love-heart" style="left: 30%; top: 60%; width: 30px; height: 30px; animation-delay: 3.3s;"></div>
+<div class="love-heart" style="left: 40%; top: 70%; width: 15px; height: 15px; animation-delay: 3.6s;"></div>
+<div class="love-heart" style="left: 50%; top: 80%; width: 28px; height: 28px; animation-delay: 3.9s;"></div>
+<div class="love-heart" style="left: 60%; top: 90%; width: 22px; height: 22px; animation-delay: 4.2s;"></div>
+<div class="love-heart" style="left: 70%; top: 85%; width: 35px; height: 35px; animation-delay: 4.5s;"></div>
+<div class="love-heart" style="left: 80%; top: 75%; width: 18px; height: 18px; animation-delay: 4.8s;"></div>
+<div class="love-heart" style="left: 90%; top: 65%; width: 24px; height: 24px; animation-delay: 5.1s;"></div>
+<div class="love-heart" style="left: 5%; top: 55%; width: 20px; height: 20px; animation-delay: 5.4s;"></div>
+<div class="love-heart" style="left: 15%; top: 45%; width: 30px; height: 30px; animation-delay: 5.7s;"></div>
+
+<div class="countdown-container">
+    <h1>Birthday Countdown</h1>
+    <div class="countdown" id="countdown"></div>
+    <div class="message" id="message"></div>
+    <div class="age" id="age"></div>
+</div>
+
+<!-- Animated Footer -->
+<div class="footer">Copyright By Md Fahim Khan, Date: 27 February 2025</div>
+
+<script>
+    // Set the birthday to March 21, 2008
+    const birthMonth = 2; // March (0-based index: 0=Jan, 1=Feb, 2=Mar)
+    const birthDay = 21;  // 21st
+    const birthYear = 2008; // 2008
+
+    // Function to get the next birthday date
+    function getNextBirthday() {
+        const today = new Date();
+        let year = today.getFullYear();
+        let nextBirthday = new Date(year, birthMonth, birthDay, 0, 0, 0).getTime();
+
+        // Check if today is the birthday (within the current day)
+        if (today.getMonth() === birthMonth && today.getDate() === birthDay) {
+            nextBirthday = today.getTime(); // Set to current time for today
+        } else if (today.getTime() > nextBirthday) {
+            nextBirthday = new Date(year + 1, birthMonth, birthDay, 0, 0, 0).getTime();
+        }
+        return nextBirthday;
+    }
+
+    // Birth date for age calculation
+    const birthDate = new Date(birthYear, birthMonth, birthDay, 0, 0, 0).getTime();
+
+    // Function to calculate total age
+    function calculateAge() {
+        const now = new Date().getTime();
+        const ageMilliseconds = now - birthDate;
+
+        const ageInSeconds = Math.floor(ageMilliseconds / 1000);
+        const ageInMinutes = Math.floor(ageInSeconds / 60);
+        const ageInHours = Math.floor(ageInMinutes / 60);
+        const ageInDays = Math.floor(ageInHours / 24);
+        const ageInMonths = Math.floor(ageInDays / 30.4375);
+        const ageInYears = Math.floor(ageInDays / 365.25);
+
+        const months = Math.floor((ageInDays % 365.25) / 30.4375);
+        const days = Math.floor(ageInDays % 30.4375);
+        const hours = ageInHours % 24;
+        const minutes = ageInMinutes % 60;
+        const seconds = ageInSeconds % 60;
+
+        document.getElementById("age").innerHTML = `Age: ${ageInYears} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+    }
+
+    // Update countdown every second
+    function updateCountdown() {
+        const now = new Date().getTime();
+        let nextBirthday = getNextBirthday();
+        const distance = nextBirthday - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display countdown
+        const countdownElement = document.getElementById("countdown");
+        const messageElement = document.getElementById("message");
+
+        if (distance <= 0 && distance > -86400000) { // Within 24 hours after birthday
+            countdownElement.innerHTML = "Happy Birthday Mariya💝";
+            messageElement.innerHTML = "Happy birthday to my favorite person in the world!";
+            messageElement.style.display = "block";
+        } else {
+            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            messageElement.style.display = "none";
+        }
+
+        // Update age
+        calculateAge();
+    }
+
+    // Run the countdown
+    setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
